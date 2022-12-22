@@ -1,0 +1,13 @@
+.list{
+    background-color: aqua;
+}
+.yup{
+    margin-left: 30%;
+}
+
+.yup .fields{
+    max-width: 200px;
+}
+.yup button{
+    margin-left:30px ;
+}
