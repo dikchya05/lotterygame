@@ -38,7 +38,7 @@ import RegisterUser from "./containers/admin/registerUser";
 import TicketWinner from "./containers/users/ticketWinner";
 import AssignWinner from "./containers/admin/assignWinner";
 import YupPractice from "./containers/admin/yupPractice";
-
+import UsersList from "./containers/users/usersList";
 
 const App =()=> {
   return (
@@ -49,6 +49,7 @@ const App =()=> {
           <Route exact path="/ticketWinner" element={ <TicketWinner/> } />
           <Route exact path="/assignwinner" element={<AssignWinner/>}/>
           <Route exact path="/yuppractice" element={<YupPractice/>}/>
+          <Route exact path="/userslist" element={<UsersList/>}/>
         </Routes>
         
        

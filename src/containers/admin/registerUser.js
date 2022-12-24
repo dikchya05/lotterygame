@@ -14,20 +14,20 @@ const SignupSchema = Yup.object().shape({
   
 });
 
-const RegisterUser =()=> {
+const RegisterUser =(props)=> {
 const [isThere, setIsThere] = useState('')
     return (
     <div className='yup'>
-    <h1>Register </h1>
+       <h1>{props.editForm ? "Edit users" : " Register for Lottory"}</h1>
     <Formik
-      initialValues={{
+      initialValues={ props.editForm ? props.userDetail : {
         name: '',
-        ticketNo: '',
+        ticketNo: null,
       }}
       validationSchema={SignupSchema}
       onSubmit={values => {
           const requestOptions = {
-              method: "POST",
+              method:props.editForm? "PUT": "POST",
               headers: {
               'Content-type': 'application/json'
               },

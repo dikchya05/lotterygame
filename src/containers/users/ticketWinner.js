@@ -8,7 +8,7 @@ const TicketWinner = () => {
   const [currentName, setCurrentName] = useState('')
   const [stillInTheGame, setStillInTheGame] = useState(true)
   const [colorIndex, setColorIndex] = useState(0)
-  const [errorMsg, setErrorMsg] = useState('')
+  const [msg, setMsg] = useState('')
 
   const fetchTicketData = async() => {
     const data = await fetch('http://localhost:3000/ticket/')
@@ -36,14 +36,17 @@ const TicketWinner = () => {
   
   }
   const validUser = async()=>{
-    setErrorMsg('')
+    if(ticketList.length ==2 ){
+      setMsg('')
     const data = await fetch(`http://localhost:3000/users/?name=${currentName}&ticketNo=${typedTicketNo}&color=${colorList[colorIndex]}`)
     const validateRes = await data.json()
-    if(validateRes){
-      setErrorMsg(validateRes.msg)
+  
+      setMsg(validateRes.errMsg || validateRes.msg)
     }else{
       drawRandom()
+    
     }
+    
   }
   const drawRandom = () => {
     const randomID = Math.floor(Math.random()*ticketList.length)
@@ -74,7 +77,7 @@ const TicketWinner = () => {
 
       <input placeholder="enter your ticket number" onKeyUp={(e) => setTypedTicketNo(e.target.value)} style={{marginLeft: '17%'}}/> <br/> <br/>
       <input placeholder="enter your name" onKeyUp={(e) => setCurrentName(e.target.value)} style={{marginLeft: '17%'}}/> <br/><br/>
-      {errorMsg}
+      {msg}
       <button style={{marginLeft: '17%'}} onClick={() => validUser()} >Next draw</button>
     </>
   );
